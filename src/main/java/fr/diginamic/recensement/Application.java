@@ -59,7 +59,12 @@ public class Application {
 				break;
 			case 2:
 				RecherchePopulationDepartementService rechercheDept = new RecherchePopulationDepartementService();
-				rechercheDept.traiter(recensement, scanner);
+				try {
+					rechercheDept.traiter(recensement, scanner);
+				} 
+				catch (AppException e1) {
+					System.out.println("Erreur dans la saisie : " + e1.getMessage());
+				}
 				break;
 			case 3:
 				RecherchePopulationRegionService rechercheRegion = new RecherchePopulationRegionService();
@@ -69,7 +74,8 @@ public class Application {
 				RecherchePopulationBorneService recherchePopBorne = new RecherchePopulationBorneService();
 				try {
 					recherchePopBorne.traiter(recensement, scanner);
-				} catch (AppException e) {
+				} 
+				catch (AppException e) {
 					System.out.println("Erreur dans la saisie : " + e.getMessage());
 				}
 				break;

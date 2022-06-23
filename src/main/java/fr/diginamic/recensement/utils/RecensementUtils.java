@@ -1,12 +1,15 @@
 package fr.diginamic.recensement.utils;
 
 import java.io.File;
+
 import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 import org.apache.commons.io.FileUtils;
 
 import fr.diginamic.recensement.entites.Recensement;
+import fr.diginamic.recensement.entites.AppException;
 
 /** Classe permettant de lire le contenu d'un fichier
  * @author DIGINAMIC
@@ -40,5 +43,18 @@ public class RecensementUtils {
 			return null;
 		}
 		
+	}
+	
+	public static Integer saisieEntier(Scanner scanner) throws AppException {
+		String saisie = scanner.next();
+		
+		if (saisie == null) {
+			throw new AppException("objet String null");
+		}
+		else if (!(saisie.matches("(?<![-.])\\b[0-9]+\\b(?!\\.[0-9])"))) {
+			throw new AppException("valeur non numérique");
+		}
+		
+		return Integer.parseInt(saisie);
 	}
 }
