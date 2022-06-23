@@ -54,8 +54,13 @@ public class Application {
 			// On exécute l'option correspondant au choix de l'utilisateur
 			switch (choix) {
 			case 1:
-				RecherchePopulationVilleService rechercheVille = new RecherchePopulationVilleService();
-				rechercheVille.traiter(recensement, scanner);
+				try {
+					RecherchePopulationVilleService rechercheVille = new RecherchePopulationVilleService();
+					rechercheVille.traiter(recensement, scanner);
+				} 
+				catch (AppException e2) {
+					System.out.println("Erreur dans la saisie du nom de la ville : " + e2.getMessage());
+				}
 				break;
 			case 2:
 				RecherchePopulationDepartementService rechercheDept = new RecherchePopulationDepartementService();
